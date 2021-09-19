@@ -1,0 +1,33 @@
+{# templates/registration/registration.html.twig #}
+<h1>jsdlkjflkdsjdjldsjkdklj</h1>
+
+{{ form(form) }}
+
+<h2>Who is already <a href="{{ path('listUsers') }}">in</a>?</h2>
+
+{% block javascripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $("#form_register").click(function(event){
+  event.preventDefault();
+  data = $(this).closest('form').serialize();
+
+  $.ajax({
+        method:'POST',
+        url:'{{ path('app_rest_userapi_insertuser') }}',
+        data: data,
+        success: function(data){
+
+          alert("succes");
+        },
+        error: function(data){
+
+          alert("Registration failed, pleas try again. If problems persist, pleas came back later");
+        }
+
+      });
+
+  });
+
+</script>
+{% endblock %}

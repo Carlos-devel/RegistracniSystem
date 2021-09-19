@@ -1,0 +1,51 @@
+{# templates/listUsers/listUsers.html.twig #}
+<style>
+table, th, td {
+ border: 1px solid black;
+}
+</style>
+
+
+<h1>List of registered users</h1>
+<table id="userList" style="border: 1px solid red">
+  <tbody id="userListBody">
+  <tr>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Date registered</th>
+  </tr>
+  </tbody>
+</table>
+
+
+
+
+
+{% block javascripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $( document ).ready(function(){
+
+    $.get("{{path("app_rest_userapi_getallusers")}}", function(data, status){
+        console.log(data);
+
+        if(status === "success" && data.length !== 0) {
+          for(index in data) {
+
+        //    console.log(data[index]);
+            $('#userListBody').append('<tr><td>'+data[index]['name']+'</td><td>'+data[index]['surname']+'</td><td>'+ data[index]['username']+'</td><td>'+data[index]['email']+'</td><td>'+data[index]['dateRegistered']+'</td></tr>');
+          }
+        } else {
+          $('#userListBody').append('<tr><td colspan = 5><b><i>No data to display</i></b></td></tr>');
+        }
+
+      });
+
+  });
+
+
+
+</script>
+{% endblock %}
