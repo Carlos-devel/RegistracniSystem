@@ -113,7 +113,7 @@ class RegistrationUser {
   }
 
   public function setPassword($psswd) {
-    $this->passwordHash = $psswd;
+    $this->passwordHash = password_hash($psswd, PASSWORD_DEFAULT);
   }
 
 }

@@ -1,5 +1,5 @@
 {# templates/registration/registration.html.twig #}
-<h1>jsdlkjflkdsjdjldsjkdklj</h1>
+<h1>Registration to service</h1>
 
 {{ form(form) }}
 
@@ -18,15 +18,13 @@
         data: data,
         success: function(data){
 
-          alert("succes");
+          alert(data["message"]);
         },
         error: function(data){
 
-          alert("Registration failed, pleas try again. If problems persist, pleas came back later");
+          alert(data["message"]);
         }
-
       });
-
   });
 
 </script>

@@ -60,16 +60,16 @@
 
         $user = new RegistrationUser();
 
+        //kontrola jestli mame validni form.
         if(!array_key_exists("name", $form) || !array_key_exists("surname", $form) || !array_key_exists("username", $form) || !array_key_exists("email", $form) || !array_key_exists("password", $form)) {
 
-  //        return new JsonResponse("", 400);
           $response = new Response();
           $response->setStatusCode(Response::HTTP_BAD_REQUEST);
           $response->headers->set('Content-Type', 'application/json');
           return $response;
         }
 
-  //      echo var_export($form);
+        //pokus o nacteni hodnot
         try {
             $user->setName($form['name']);
             $user->setSurname($form['surname']);
@@ -81,7 +81,7 @@
           $response = new Response();
           $response->setStatusCode(Response::HTTP_OK);
           $response->headers->set('Content-Type', 'application/json');
-          $response->setContent(json_encode(["message"=>var_export($request->request->get('form'),true)]));
+          $response->setContent(json_encode(["message"=>"person regstered"]));
         }
         catch(Exception $e) {
           $response = new Response();
@@ -93,6 +93,7 @@
 
         $em = $this->getDoctrine()->getManager();
 
+        //ulozeni do DB.
         try {
           $em->persist($user);
           $em->flush();
@@ -101,7 +102,7 @@
           $response = new Response();
           $response->setStatusCode(Response::HTTP_BAD_REQUEST);
           $response->headers->set('Content-Type', 'application/json');
-          $response->setContent(json_encode(["message"=>"user can't be saved"]));
+          $response->setContent(json_encode(["message"=>"Registration failed, pleas try again. If problems persist, pleas came back later"]));
         }
 
         return $response;
