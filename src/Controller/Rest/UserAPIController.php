@@ -81,7 +81,7 @@
           $response = new Response();
           $response->setStatusCode(Response::HTTP_OK);
           $response->headers->set('Content-Type', 'application/json');
-          $response->setContent(json_encode(["message"=>"person regstered"]));
+          $response->setContent(json_encode(["message"=>"person registered"]));
         }
         catch(Exception $e) {
           $response = new Response();

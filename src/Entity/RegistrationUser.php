@@ -63,7 +63,7 @@ class RegistrationUser {
     return $this->name;
   }
 
-  public function setSurname($surname) {
+  public function setSurname(string $surname) {
     $this->surname = $surname;
   }
 
@@ -71,7 +71,7 @@ class RegistrationUser {
     return $this->surname;
   }
 
-  public function setUsername($username) {
+  public function setUsername(string $username) {
     $this->username = $username;
   }
 
@@ -79,7 +79,7 @@ class RegistrationUser {
     return $this->username;
   }
 
-  public function setEmail($email) {
+  public function setEmail(string $email) {
     $this->email = $email;
   }
 
@@ -87,7 +87,7 @@ class RegistrationUser {
     return $this->email;
   }
 
-  public function setRegistrationDate($date) {
+  public function setRegistrationDate(DateTime $date) {
     $this->registrationDate = $date ?: new \DateTime("now");
   }
 
@@ -100,7 +100,7 @@ class RegistrationUser {
       return $this->id;
   }
 
-  public function setPasswordHash($psswd) {
+  public function setPasswordHash(string $psswd) {
     $this->passwordHash = $psswd;
   }
 
@@ -112,7 +112,7 @@ class RegistrationUser {
     return FALSE;
   }
 
-  public function setPassword($psswd) {
+  public function setPassword(string $psswd) {
     $this->passwordHash = password_hash($psswd, PASSWORD_DEFAULT);
   }
 
